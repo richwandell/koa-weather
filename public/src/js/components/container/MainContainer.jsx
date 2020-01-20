@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Skycon from "../presentation/Skycon";
 import Header from "../presentation/Header";
 import Main from "../presentation/Main";
 
