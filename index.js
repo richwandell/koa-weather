@@ -7,8 +7,6 @@ const {MapQuest, DarkSky, Config} = require("./middleware");
 
 const app = new Koa();
 const router = new Router();
-
-
 const pug = new Pug({
     viewPath: path.resolve(__dirname, './views'),
     app: app
@@ -39,4 +37,4 @@ app
     .use(router.routes())
     .use(router.allowedMethods());
 
-app.listen(3000);
+module.exports = app;
