@@ -10,3 +10,8 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
+plugins:
+  - serverless-scriptable-plugin
+custom:
+  scriptHooks:
+    before:package:createDeploymentArtifacts: npm install

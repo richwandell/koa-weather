@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production --config webpack.prod.js",
+    "build-dev": "webpack --mode development --config webpack.dev.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "webpack --mode production --config webpack.prod.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +17,20 @@
     "koa-pug": "^4.0.3",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
+    "moment": "^2.24.0",
     "serverless-http": "^2.3.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.10.1",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2",
+    "serverless-scriptable-plugin": "^1.0.5"
   }
 }
