@@ -1,0 +1,17 @@
+{
+  "name": "Koa Local",
+  "short_name": "Koa Local",
+  "dir": "ltr",
+  "lang": "en-US",
+  "orientation": "portrait",
+  "start_url": "/",
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "display": "standalone",
+  "description": "PWA Weather APP made with Koa and React",
+  "icons": [{
+    "src": "icon-192.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  }]
+}

@@ -1,6 +1,7 @@
 const DarkSky = require('./DarkSky');
-const MapQuest = require('./MapQuest');
+const MapQuestForward = require('./MapQuestForward');
+const MapQuestReverse = require('./MapQuestReverse');
 const Config = require('./Config');
 const NewsApi = require('./NewsApi');
 
-module.exports = {MapQuest, DarkSky, Config, NewsApi};
+module.exports = {MapQuestForward, DarkSky, Config, NewsApi, MapQuestReverse};

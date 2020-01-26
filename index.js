@@ -3,7 +3,7 @@ const Router = require('koa-router');
 const Pug = require('koa-pug');
 const path = require('path');
 const serve = require('koa-static');
-const {MapQuest, DarkSky, Config, NewsApi} = require("./middleware");
+const {MapQuestForward, MapQuestReverse, DarkSky, Config, NewsApi} = require("./middleware");
 
 const app = new Koa();
 const router = new Router();
@@ -13,27 +13,43 @@ const pug = new Pug({
 });
 
 router
-    .use("/at/:city", MapQuest)
-    .use("/at/:city", DarkSky)
-    .use("/at/:city", NewsApi)
-    .get("/at/:city", async (ctx, next) => {
-        await ctx.render(
-            "index",
-            {
-                applicationVariables: {
-                    newsArticles: ctx.state.newsArticles,
-                    weather: {
-                        temperature: ctx.state.currently.temperature,
-                        summary: ctx.state.currently.summary,
-                        icon: ctx.state.currently.icon
+    .use("/get/:city", MapQuestForward)
+    .use("/get/:city", DarkSky)
+    .use("/get/:city", NewsApi)
+    .get("/get/:city", async (ctx, next) => {
+        ctx.type = 'application/vnd.api+json';
+        ctx.body = {
+            "data": {
+                "type": "city",
+                "attributes": {
+                    "name": ctx.state.city,
+                    "state": ctx.state.state,
+                    "news": {
+                        "data": ctx.state.newsArticles
                     },
-                    city: ctx.state.city,
-                    state: ctx.state.state
+                    "weather": ctx.state.currently
                 }
-            },
-            true
-        );
+            }
+        }
     });
+
+router
+    .use("/getCityName/:latlng", MapQuestReverse)
+    .get("/getCityName/:latlng", async (ctx, next) => {
+        ctx.type = 'application/vnd.api+json';
+        ctx.body = {
+            "data": {
+                "type": "city",
+                "attributes": {
+                    "name": ctx.state.city,
+                    "state": ctx.state.state,
+                }
+            }
+        };
+    });
+
+router.get("/", async (ctx, next) => await ctx.render("index", true));
+router.get("/at/:city", async (ctx, next) => await ctx.render("index", true));
 
 app
     .use(serve("./public"))

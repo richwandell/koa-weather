@@ -1,1 +1,2 @@
 export const CHANGE_STATE = "CHANGE_STATE";
+export const SET_STATE_DATA = "SET_STATE_DATA";

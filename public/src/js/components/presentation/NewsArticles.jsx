@@ -12,7 +12,7 @@ class NewsArticles extends Component {
                 "holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
                 : article.urlToImage;
             return (
-                <div className={"col-md-4 d-flex"}>
+                <div key={"article-" + i} className={"col-md-4 d-flex"}>
                     <div className="card mb-4 box-shadow">
                         <a href={article.url} target="_blank">
                             <img className="card-img-top"
